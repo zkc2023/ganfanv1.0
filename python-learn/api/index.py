@@ -9,7 +9,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         self.wfile.write("DearXuan's API by python!".encode())
-        return
+       
 
 app = Flask(__name__)
 canning = [
@@ -29,3 +29,4 @@ def chisha():
     return render_template('index.html', canning=canning, c=canning[num])
 
 
+ return
