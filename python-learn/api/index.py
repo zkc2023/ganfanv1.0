@@ -17,3 +17,11 @@ def index():
 def chisha():
     num = randint(0, len(canning) - 1)
     return render_template('index.html', canning=canning, c=canning[num])
+
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
+@app.route('/about')
+def about():
+    return 'About'
