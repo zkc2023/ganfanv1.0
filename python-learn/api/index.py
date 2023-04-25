@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from random import randint
-
+from http.server import BaseHTTPRequestHandler
+ 
 
 app = Flask(__name__)
 canning = [
@@ -9,7 +10,7 @@ canning = [
         ]
 
 
-@app.route('/')
+@app.route('/index')
 def index():
     return render_template('index.html', canning=canning)
 
@@ -19,5 +20,12 @@ def chisha():
     num = randint(0, len(canning) - 1)
     return render_template('index.html', canning=canning, c=canning[num])
 
-
+class handler(BaseHTTPRequestHandler):
+ 
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/plain')
+        self.end_headers()
+        self.wfile.write(app.encode('utf-8'))
+        return
  
