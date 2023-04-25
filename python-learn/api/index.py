@@ -1,14 +1,6 @@
-from http.server import BaseHTTPRequestHandler
 from flask import Flask, render_template
 from random import randint
 
-class handler(BaseHTTPRequestHandler):
- 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-       return
 
 app = Flask(__name__)
 canning = [
@@ -17,7 +9,7 @@ canning = [
         ]
 
 
-@app.route('/index')
+@app.route('/')
 def index():
     return render_template('index.html', canning=canning)
 
