@@ -1,5 +1,15 @@
+from http.server import BaseHTTPRequestHandler
 from flask import Flask, render_template
 from random import randint
+
+class handler(BaseHTTPRequestHandler):
+ 
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write("DearXuan's API by python!".encode())
+        return
 
 app = Flask(__name__)
 canning = [
@@ -18,10 +28,4 @@ def chisha():
     num = randint(0, len(canning) - 1)
     return render_template('index.html', canning=canning, c=canning[num])
 
-@app.route('/')
-def home():
-    return 'Hello, World!'
 
-@app.route('/about')
-def about():
-    return 'About'
